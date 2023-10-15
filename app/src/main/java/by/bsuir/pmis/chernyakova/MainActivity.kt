@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.BottomAppBar
@@ -47,6 +49,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import by.bsuir.pmis.chernyakova.compose.AboutScreen
 import by.bsuir.pmis.chernyakova.ui.theme.Lab_0Theme
 import by.bsuir.pmis.chernyakova.ui.theme.Pink40
 
@@ -66,7 +69,7 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
                         BottomAppBar(
                             containerColor = MaterialTheme.colorScheme.background,
-                            contentColor = Color.White,
+
                         ) {
                             Text(
                                 modifier = Modifier
@@ -104,167 +107,17 @@ class MainActivity : ComponentActivity() {
                         innerPadding ->
                     Column(
                         modifier = Modifier
-                            .padding(innerPadding),
+                            .padding(innerPadding)
+                            .verticalScroll(rememberScrollState()),
                         verticalArrangement = Arrangement.spacedBy(16.dp),
+
+
                     ) {
-                       AboutScreen()
+                       AboutScreen().AboutScreen();
+
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier,
-        color= Pink40
-    )
-}
-@Composable
-fun AboutScreen(){
-    Column {
-
-
-        Image( modifier = Modifier.size(90.dp).align(Alignment.CenterHorizontally),painter = painterResource(id = R.drawable.info), contentDescription = null)
-        Text(modifier = Modifier
-            .fillMaxWidth().padding(top=15.dp),
-            textAlign = TextAlign.Center,
-            text = "Artwork by heruga", fontSize = 19.sp)
-        Text(modifier = Modifier
-            .fillMaxWidth().padding( bottom = 10.dp,top=20.dp),
-            textAlign = TextAlign.Center,
-            text = "Our networks",fontSize = 19.sp)
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        )
-        {
-            Image(
-
-                modifier = Modifier.size(50.dp).clickable {  },
-                painter = painterResource(id = R.drawable.webbrowser),
-                contentDescription = null
-            )
-            Image(
-                modifier = Modifier.size(50.dp).clickable {  },
-                painter = painterResource(id = R.drawable.telegram),
-                contentDescription = null
-            )
-            Image(
-                modifier = Modifier.size(50.dp).clickable {  },
-                painter = painterResource(id = R.drawable.instagram),
-                contentDescription = null
-            )
-        }
-        TextButton(onClick = { /*TODO*/ },) {
-
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                Image(
-                    modifier = Modifier.size(30.dp),
-                    painter = painterResource(id = R.drawable.mail),
-                    contentDescription = null
-                )
-                Column {
-                    Text(text = "Email",color= Color.White, fontSize = 16.sp)
-                    Text(text = stringResource(R.string.email),color=Color.LightGray, fontSize = 14.sp)
-                }
-
-            }
-        }
-        TextButton(onClick = { /*TODO*/ },) {
-
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                Image(
-                    modifier = Modifier.size(30.dp),
-                    painter = painterResource(id = R.drawable.information),
-                    contentDescription = null
-                )
-                Column {
-                    Text(text = "FAQ",color=Color.White, fontSize = 16.sp)
-                    Text(text = stringResource(R.string.FAQ),color=Color.LightGray, fontSize = 14.sp)
-                }
-
-            }
-        }
-        TextButton(onClick = { /*TODO*/ },) {
-
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                Image(
-                    modifier = Modifier.size(30.dp),
-                    painter = painterResource(id = R.drawable.starrating),
-                    contentDescription = null
-                )
-                Column {
-                    Text(text = "Rate us",color=Color.White, fontSize = 16.sp)
-                    Text(text = stringResource(R.string.rate),color=Color.LightGray, fontSize = 14.sp)
-                }
-
-            }
-        }
-        TextButton(onClick = { /*TODO*/ },) {
-
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ) {
-                Image(
-                    modifier = Modifier.size(30.dp),
-                    painter = painterResource(id = R.drawable.statistics),
-                    contentDescription = null
-                )
-                Column {
-                    Text(text = "Allow us to collect analytics",color=Color.White, fontSize = 16.sp)
-                    Text(text = stringResource(R.string.analytics),color= Color.LightGray, fontSize = 14.sp)
-                }
-                var checked by remember { mutableStateOf(true) }
-
-                Switch(
-                    modifier=Modifier.padding(start = 70.dp),
-                    checked = checked,
-                    onCheckedChange = {
-                        checked = it
-                    }
-                )
-
-            }
-        }
-
-    }
-
-}
-@Preview(showBackground = true)
-@Composable
-fun AboutScreenPreview()
-{
-    Lab_0Theme {
-        AboutScreen()
-    }
-}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lab_0Theme {
-        Greeting("Android")
     }
 }
